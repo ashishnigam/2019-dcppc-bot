@@ -148,7 +148,7 @@ def add_common_args(parser):
         "-m",
         "--milestones",
         help="milestones repo name",
-        default="dcppc/dcppc-milestones",
+        default="ctb/example-milestones",
     )
     parser.add_argument(
         "--change-github",
@@ -457,9 +457,11 @@ def main():
         except KeyError:
             logging.error(
                 "Please provide a GitHub auth token using --token "
-                "or the GITHUB_TOKEN env var"
+                "or the GITHUB_TOKEN env var; "
+                "You will need this to make changes."
             )
-            sys.exit(1)
+
+            g = Github()
 
     if args.backup is None:
         os.makedirs("backups", exist_ok=True)
